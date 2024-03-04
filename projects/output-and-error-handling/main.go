@@ -34,6 +34,7 @@ func makeRequest() (*http.Response, error) {
 	// create request
 	logToStderr("setting up request...")
 	req, err := http.NewRequest("GET", url, nil)
+
 	if err != nil {
 		err = fmt.Errorf("failed to create request: %v", err)
 		logToStderr(err)
