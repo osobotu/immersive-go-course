@@ -5,6 +5,7 @@
   <div class="c-page-header__container">
     <h1 class="c-page-header__title e-heading e-heading__1">{{.Title}}</h1>
 
+    {{ if .Pages }}
     <aside class="c-toc c-page-header__toc is-none--lt-container">
       <ol>
         {{ range .Pages }}
@@ -14,37 +15,9 @@
         {{ end}}
       </ol>
     </aside>
+    {{ end }}
   </div>
 </header>
-
-<!-- version pages -->
-{{ if (eq .Section "versions") }}
-<article class="{{ with .Content }}c-copy{{end}}">
-  {{ .Content }}
-  <ol class="c-timeline">
-    {{ range .Pages.Reverse }}
-    <li class="c-timeline__entry">{{ partial "timeline.html" . }}</li>
-    {{ end }}
-  </ol>
-</article>
-{{ partial "breadcrumbs.html" . }} {{ end }}
-<!-- 
-  end version pages 
--->
-<!-- 
-  other list pages 
--->
-{{ if not (eq .Section "versions") }}
-<!-- 
-  main content 
--->
 {{ with .Content }}
 <article class="c-copy">{{.}}</article>
-{{ end}}
-<!-- 
-  page links
--->
-{{ partial "cells.html" .}}
-
-<!-- end if not Versions -->
-{{ end}} {{end}}
+{{ end}} {{ partial "cells.html" .}} {{ end}}
